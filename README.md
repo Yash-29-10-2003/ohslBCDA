@@ -22,11 +22,14 @@ Steps to forking and cloning : [https://docs.github.com/en/pull-requests/collabo
 - Input the search parameter : Ex : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (lifestyle behavior)
 
 ## How it works :
-- https://marcobonzanini.com/2015/01/12/searching-pubmed-with-python/
 
-- Code follows the following steps :
+#Code follows the following steps :
 1. Search: Searches the PubMed database using a specified query and retrieves the total number of results.
 2. Fetch Details: Retrieves detailed information for all the papers matching the query.
 3. Process: Processes the fetched papers, extracting the title, authors, and abstract for each paper.
 4. Save to CSV: Saves the extracted information to a CSV file named "pubmed_results.csv" with columns for title, authors, and abstract.
+
+#Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND ("oxidative stress")
+
+![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/e6583a43-92b8-4afd-9c89-83975e95e409)
 
