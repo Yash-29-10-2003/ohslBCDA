@@ -23,7 +23,7 @@ Steps to forking and cloning : [https://docs.github.com/en/pull-requests/collabo
 
 ## How it works :
 
-# Code follows the following steps :
+### Code follows the following steps :
 1. Search: Searches the PubMed database using a specified query and retrieves the total number of results.
 2. Fetch Details: Retrieves detailed information for all the papers matching the query.
 3. Process: Processes the fetched papers, extracting the title, authors, and abstract for each paper.
@@ -31,7 +31,7 @@ Steps to forking and cloning : [https://docs.github.com/en/pull-requests/collabo
 
 - Since the code extracts ALL the related papers from pubmed and sorts them on the basis of relevance , the lower we might go the less relevant the papers might become , filter the data as required !
 
-# Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND ("oxidative stress")
+### Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND ("oxidative stress")
 
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/e6583a43-92b8-4afd-9c89-83975e95e409)
 
