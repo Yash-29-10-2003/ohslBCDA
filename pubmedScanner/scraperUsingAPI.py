@@ -1,5 +1,7 @@
 import csv
+import time
 from Bio import Entrez
+from transformers import pipeline
 
 def search(query):
     Entrez.email = 'your.email@example.com'
@@ -52,20 +54,30 @@ def get_url(paper):
     pmid = paper['MedlineCitation']['PMID']
     return f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
 
+def extract_key_findings(abstract, summarizer):
+    summary = summarizer(abstract, max_length=150, min_length=40, do_sample=False)
+    return summary[0]['summary_text']
+
 if __name__ == '__main__':
+    # Initializing the summarizer
+    summarizer = pipeline('summarization', model='facebook/bart-large-cnn')
+    
     query = input("Enter the query ! : ")
     
-    # Performs the search to get the total number of results
+    # Perform the search to get the total number of results
     total_results = search(query)
     
-    # Fetches details for all papers
+    # Fetch details for all papers
     papers = fetch_details(query, total_results)
     
     # Process the fetched papers and save them to a CSV file
     with open('pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['Title', 'Authors', 'PublicationType', 'URL' , 'Abstract']
+        fieldnames = ['Title', 'Authors', 'PublicationType', 'URL', 'KeyFindings', 'Abstract']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
+        
+        total_time = 0
+        num_papers = len(papers['PubmedArticle'])
         
         for paper in papers['PubmedArticle']:
             title = paper['MedlineCitation']['Article']['ArticleTitle']
@@ -78,4 +90,13 @@ if __name__ == '__main__':
             publication_type = get_publication_type(paper)
             url = get_url(paper)
             
-            writer.writerow({'Title': title, 'Authors': authors, 'PublicationType': publication_type, 'URL': url , 'Abstract': abstract})
+            start_time = time.time()
+            key_findings = extract_key_findings(abstract, summarizer)
+            end_time = time.time()
+            
+            total_time += (end_time - start_time)
+            
+            writer.writerow({'Title': title, 'Authors': authors, 'PublicationType': publication_type, 'URL': url, 'KeyFindings': key_findings, 'Abstract': abstract})
+        
+        average_time = total_time / num_papers
+        print(f"Processed {num_papers} papers in {total_time:.2f} seconds. Average time per paper: {average_time:.2f} seconds.")
