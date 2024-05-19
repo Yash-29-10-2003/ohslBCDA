@@ -31,7 +31,7 @@ Steps to forking and cloning : [https://docs.github.com/en/pull-requests/collabo
 
 - Since the code extracts ALL the related papers from pubmed and sorts them on the basis of relevance , the lower we might go the less relevant the papers might become , filter the data as required !
 
-### Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
+- Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
 
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/a29d883f-d1db-45d1-8095-e1e37c202795)
 
