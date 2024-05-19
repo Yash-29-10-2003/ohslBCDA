@@ -57,7 +57,8 @@ python pubmedScanner/scraperUsingAPI.py
 
 - Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
 
-![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/a29d883f-d1db-45d1-8095-e1e37c202795)
+![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/a3dceaba-2449-4bee-9547-8cd1633fe210)
+
 
 Everytime we would put in a new query the code would update the pubmed-results.csv so save a copy before running another command .
 
