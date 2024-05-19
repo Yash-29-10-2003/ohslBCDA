@@ -24,16 +24,16 @@ Steps to forking and cloning : [https://docs.github.com/en/pull-requests/collabo
 ## How it works :
 
 ### Code follows the following steps :
-1. Search: Searches the PubMed database using a specified query and retrieves the total number of results.
-2. Fetch Details: Retrieves detailed information for all the papers matching the query.
-3. Process: Processes the fetched papers, extracting the title, authors, and abstract for each paper.
+1. Search: Searches the PubMed database using a specified query and retrieves the total number of results .
+2. Fetch Details: Retrieves detailed information for all the papers matching the query , it only feteches results from 2020 and afterwards.
+3. Process: Processes the fetched papers, extracting the title, authors, url to the paper , paper type and abstract for each paper.
 4. Save to CSV: Saves the extracted information to a CSV file named "pubmed_results.csv" with columns for title, authors, and abstract.
 
 - Since the code extracts ALL the related papers from pubmed and sorts them on the basis of relevance , the lower we might go the less relevant the papers might become , filter the data as required !
 
-### Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND ("oxidative stress")
+### Following is an example of how the resulting csv would look after the input : (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
 
-![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/e6583a43-92b8-4afd-9c89-83975e95e409)
+![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/a29d883f-d1db-45d1-8095-e1e37c202795)
 
 Everytime we would put in a new query the code would update the pubmed-results.csv so save a copy before running another command .
 
