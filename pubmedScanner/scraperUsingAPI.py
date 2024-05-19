@@ -5,9 +5,10 @@ def search(query):
     Entrez.email = 'your.email@example.com'
     handle = Entrez.esearch(db='pubmed',
                             sort='relevance',
-                            retmax=0,  # Set retmax to 0 to get the total count of results
+                            retmax=0,  # Requesting total count
                             retmode='xml',
-                            term=query)
+                            term=query,
+                            mindate='2020/01/01')  # Data filter
     results = Entrez.read(handle)
     total_results = int(results['Count'])
     return total_results
@@ -22,7 +23,8 @@ def fetch_details(query, total_results):
                                 retmax=batch_size,
                                 retstart=start,
                                 retmode='xml',
-                                term=query)
+                                term=query,
+                                mindate='2020/01/01')
         results = Entrez.read(handle)
         id_list.extend(results['IdList'])
     Entrez.email = 'your.email@example.com'
@@ -40,19 +42,28 @@ def get_abstract(paper):
             abstract = ' '.join(abstract)
     return abstract
 
+def get_publication_type(paper):
+    pub_types = []
+    if 'PublicationTypeList' in paper['MedlineCitation']['Article']:
+        pub_types = [pub_type for pub_type in paper['MedlineCitation']['Article']['PublicationTypeList']]
+    return ', '.join(pub_types)
+
+def get_url(paper):
+    pmid = paper['MedlineCitation']['PMID']
+    return f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+
 if __name__ == '__main__':
-    # Provide your desired query here
     query = input("Enter the query ! : ")
     
-    # Perform the search to get the total number of results
+    # Performs the search to get the total number of results
     total_results = search(query)
     
-    # Fetch details for all papers
+    # Fetches details for all papers
     papers = fetch_details(query, total_results)
     
     # Process the fetched papers and save them to a CSV file
     with open('pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['Title', 'Authors', 'Abstract']
+        fieldnames = ['Title', 'Authors', 'PublicationType', 'URL' , 'Abstract']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         
@@ -64,5 +75,7 @@ if __name__ == '__main__':
             except KeyError:
                 authors = 'N/A'
             abstract = get_abstract(paper)
+            publication_type = get_publication_type(paper)
+            url = get_url(paper)
             
-            writer.writerow({'Title': title, 'Authors': authors, 'Abstract': abstract})
+            writer.writerow({'Title': title, 'Authors': authors, 'PublicationType': publication_type, 'URL': url , 'Abstract': abstract})
