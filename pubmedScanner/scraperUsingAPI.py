@@ -35,9 +35,9 @@ def fetch_details(query, total_results):
         results = Entrez.read(handle)
         id_list.extend(results['IdList'])
     Entrez.email = 'your.email@example.com'
-    handle = Entrez.efetch(db='pubmed',
-                           retmode='xml',
-                           id=','.join(id_list))
+    handle = Entrez.efetch( db='pubmed',
+                            retmode='xml',
+                            id=','.join(id_list))
     papers = Entrez.read(handle)
     return papers
 
