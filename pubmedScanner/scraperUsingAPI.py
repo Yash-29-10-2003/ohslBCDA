@@ -1,7 +1,12 @@
 import csv
 import time
+import torch          #to run model on gpu
 from Bio import Entrez
 from transformers import pipeline
+
+# Checking for GPU availability
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
 
 def search(query):
     Entrez.email = 'your.email@example.com'
@@ -60,17 +65,17 @@ def extract_key_findings(abstract, summarizer):
 
 if __name__ == '__main__':
     # Initializing the summarizer
-    summarizer = pipeline('summarization', model='facebook/bart-large-cnn')
+    summarizer = pipeline('summarization', model='facebook/bart-large-cnn', device=0 if torch.cuda.is_available() else -1)
     
     query = input("Enter the query ! : ")
     
-    # Perform the search to get the total number of results
+    # Performing the search to get the total number of results
     total_results = search(query)
     
-    # Fetch details for all papers
+    # Fetching details for all papers
     papers = fetch_details(query, total_results)
     
-    # Process the fetched papers and save them to a CSV file
+    # Processing the fetched papers and save them to a CSV file
     with open('pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['Title', 'Authors', 'PublicationType', 'URL', 'KeyFindings', 'Abstract']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
