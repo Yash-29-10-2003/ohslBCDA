@@ -15,7 +15,7 @@ This repository contains all the models and assets for the OHSL BCDA project.
 
 ## How to Use:
 
-1. Clone or download the entire repository as a ZIP file.
+1. Clone or download the entire repository as a ZIP file. Guide for forking and cloning : [https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo]
 2. Set up a virtual environment:
     ```bash
     python -m venv venv
@@ -39,13 +39,13 @@ This repository contains all the models and assets for the OHSL BCDA project.
 
 ## Improving Processing Time per Request:
 
-- The approximate processing times per abstract for different models and hardware configurations are as follows:
+- The approximate processing times per abstract as processed on my laptop(r5 5600h , gtx 1650) for different models  are as follows:
     - ~12 seconds per abstract for the Facebook BART-Large-CNN on CPU.
     - ~1.8 seconds per abstract for the Facebook BART-Large-CNN on GPU.
     - ~7.8 seconds per abstract for the DistilBART-CNN-12-6 on CPU (a smaller and faster model).
     - ~1.1 seconds per abstract for the DistilBART-CNN-12-6 on CPU.
 
-### Using CUDA Support for PyTorch:
+### Using CUDA Support for PyTorch [dedicated gpu required]:
 
 1. Check if CUDA support is already available:
     ```bash
@@ -68,8 +68,9 @@ This repository contains all the models and assets for the OHSL BCDA project.
     ```bash
     python pubmedScanner/test.py
     ```
+Running the scraper after successfuly following these steps would use the gpu for saving time.
 
-## How It Works:
+## Workings:
 
 1. **Search**: Searches the PubMed database using a specified query and retrieves the total number of results.
 2. **Fetch Details**: Retrieves detailed information for all the papers matching the query, fetching only those published in 2020 and afterward.
@@ -81,6 +82,9 @@ This repository contains all the models and assets for the OHSL BCDA project.
 
 - Since the code extracts all related papers from PubMed and sorts them by relevance, the further down the results, the less relevant the papers might become. Filter the data as required.
 - After each query, the resulting CSV file will be updated, so save a copy before running another command.
-- Following is an example of how the output might look :
+- Following is an example of how the output might look for the following input :
+   ```bash
+     (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
+   ```
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/80797f8f-bbad-4a46-a3e1-e144189c07ba)
 
