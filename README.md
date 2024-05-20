@@ -10,7 +10,7 @@ This repository contains all the models and assets for the OHSL BCDA project.
 1. Allows the user to add a search term for personalized results, such as (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress).
 2. Saves the results as a CSV file for better accessibility.
 3. Utilizes pagination to process a large number of papers efficiently.
-4. Displays links, publication types, and key findings based on the abstract.
+4. Displays links, publication types, and key findings based on the abstract using huggingface models.
 5. Limits the output to papers published in 2020 and afterward for relevancy.
 
 ## How to Use:
