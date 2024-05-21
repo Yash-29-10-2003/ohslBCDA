@@ -69,6 +69,7 @@ This repository contains all the models and assets for the OHSL BCDA project.
     python pubmedScanner/test.py
     ```
 Running the scraper after successfuly following these steps would use the gpu for saving time.
+
 If you dont have a GPU and also have a weak CPU and each paper is taking too much time to be summarized , you can use a lighter model by changing the model in `line 68` of the scraper (trades of accuracy):
 ```bash
 summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', device=0 if torch.cuda.is_available() else -1)
