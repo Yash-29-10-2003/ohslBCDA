@@ -78,7 +78,7 @@ summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', de
 ## Workings:
 
 1. **Search**: Searches the PubMed database using a specified query and retrieves the total number of results.
-2. **Fetch Details**: Retrieves detailed information for all the papers matching the query, fetching only those published in 2020 and afterward.
+2. **Fetch Details**: Retrieves detailed information for all the papers matching the query, fetching only those published in 2020 and afterward (outputs only the top 300 results if total > 300).
 3. **Process**: Processes the fetched papers, extracting the title, authors, URL to the paper, publication type, and abstract for each paper.
 4. **Summarize**: Runs the abstract through an NLP model (Hugging Face: Facebook BART) to extract key findings. Uses the computers gpu if followed the steps above to save time .
 5. **Save to CSV**: Saves the extracted information to a CSV file named "pubmed_results.csv".
