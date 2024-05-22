@@ -49,7 +49,7 @@ def get_abstract(paper):
             abstract = ' '.join(abstract)
     return abstract
 
-def preprocess_text(text):           # making sure for not getting a bigger input than
+def preprocess_text(text):           # making sure for not getting a bigger input than bart can process
     max_input_length = 512  # BART typically handles up to 1024 tokens
     tokens = text.split()
     if len(tokens) > max_input_length:
