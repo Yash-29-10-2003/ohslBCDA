@@ -1,6 +1,7 @@
 # OHSL BCDA
 
-This repository contains all the models and assets for the OHSL BCDA project.
+- This repository contains all the models and assets for the OHSL BCDA project.
+- The [excel sheet](https://docs.google.com/spreadsheets/d/17-HF9mAb9qOwKXV14OQNLleoap49gqWg9ieNHaJLHSk/edit#gid=1012353830) with scraped results from pubmed .
 
 # Pubmed Scanner:
 
