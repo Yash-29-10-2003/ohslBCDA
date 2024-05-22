@@ -49,6 +49,13 @@ def get_abstract(paper):
             abstract = ' '.join(abstract)
     return abstract
 
+def preprocess_text(text):           # making sure for not getting a bigger input than
+    max_input_length = 512  # BART typically handles up to 1024 tokens
+    tokens = text.split()
+    if len(tokens) > max_input_length:
+        tokens = tokens[:max_input_length]
+    return ' '.join(tokens)
+
 def get_publication_type(paper):
     pub_types = []
     if 'PublicationTypeList' in paper['MedlineCitation']['Article']:
@@ -74,6 +81,8 @@ if __name__ == '__main__':
     
     # Fetching details for up to 300 papers
     max_results = min(300, total_results)
+    print("Total search results : ",total_results)
+    print("Printing a total of " ,max_results," results in the pubmed_results.csv .")
     papers = fetch_details(query, max_results)
     
     # Processing the fetched papers and save them to a CSV file
@@ -98,6 +107,7 @@ if __name__ == '__main__':
             
             # Calculating time while the abstracts get processed
             start_time = time.time()
+            abstract = preprocess_text(abstract)
             key_findings = extract_key_findings(abstract, summarizer)
             end_time = time.time()
             total_time += (end_time - start_time)
