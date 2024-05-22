@@ -20,10 +20,10 @@ def search(query):
     total_results = int(results['Count'])
     return total_results
 
-def fetch_details(query, total_results):
+def fetch_details(query, max_results):
     batch_size = 100  # Number of results to fetch per request
     id_list = []
-    for start in range(0, total_results, batch_size):
+    for start in range(0, min(max_results, 300), batch_size):
         Entrez.email = 'your.email@example.com'
         handle = Entrez.esearch(db='pubmed',
                                 sort='relevance',
@@ -35,9 +35,9 @@ def fetch_details(query, total_results):
         results = Entrez.read(handle)
         id_list.extend(results['IdList'])
     Entrez.email = 'your.email@example.com'
-    handle = Entrez.efetch( db='pubmed',
-                            retmode='xml',
-                            id=','.join(id_list))
+    handle = Entrez.efetch(db='pubmed',
+                           retmode='xml',
+                           id=','.join(id_list[:max_results]))
     papers = Entrez.read(handle)
     return papers
 
@@ -72,8 +72,9 @@ if __name__ == '__main__':
     # Performing the search to get the total number of results
     total_results = search(query)
     
-    # Fetching details for all papers
-    papers = fetch_details(query, total_results)
+    # Fetching details for up to 300 papers
+    max_results = min(300, total_results)
+    papers = fetch_details(query, max_results)
     
     # Processing the fetched papers and save them to a CSV file
     with open('pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
@@ -84,7 +85,7 @@ if __name__ == '__main__':
         total_time = 0
         num_papers = len(papers['PubmedArticle'])
         
-        for paper in papers['PubmedArticle']:
+        for paper in papers['PubmedArticle'][:300]:  # Ensuring we process only the top 300 results
             title = paper['MedlineCitation']['Article']['ArticleTitle']
             try:
                 author_list = paper['MedlineCitation']['Article']['AuthorList']
@@ -95,10 +96,10 @@ if __name__ == '__main__':
             publication_type = get_publication_type(paper)
             url = get_url(paper)
             
+            # Calculating time while the abstracts get processed
             start_time = time.time()
             key_findings = extract_key_findings(abstract, summarizer)
             end_time = time.time()
-            
             total_time += (end_time - start_time)
             
             writer.writerow({'Title': title, 'Authors': authors, 'PublicationType': publication_type, 'URL': url, 'KeyFindings': key_findings, 'Abstract': abstract})
