@@ -70,6 +70,11 @@ This repository contains all the models and assets for the OHSL BCDA project.
     ```
 Running the scraper after successfuly following these steps would use the gpu for saving time.
 
+If you dont have a GPU and also have a weak CPU and each paper is taking too much time to be summarized , you can use a lighter model by changing the model in `line 68` of the scraper (trades of accuracy):
+```bash
+summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', device=0 if torch.cuda.is_available() else -1)
+```
+
 ## Workings:
 
 1. **Search**: Searches the PubMed database using a specified query and retrieves the total number of results.
