@@ -94,3 +94,6 @@ summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', de
    ```
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/80797f8f-bbad-4a46-a3e1-e144189c07ba)
 
+# Filter :
+We filter all the rows out of a CSV containing "Review" as a string in the "PublicationType" column of the CSV using the pandas library.
+![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/82c8ff2c-af94-434d-b762-2cff865ab7c2)
