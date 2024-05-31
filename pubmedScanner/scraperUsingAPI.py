@@ -36,8 +36,8 @@ def fetch_details(query, max_results):
         id_list.extend(results['IdList'])
     Entrez.email = 'your.email@example.com'
     handle = Entrez.efetch(db='pubmed',
-                           retmode='xml',
-                           id=','.join(id_list[:max_results]))
+                            retmode='xml',
+                            id=','.join(id_list[:max_results]))
     papers = Entrez.read(handle)
     return papers
 
