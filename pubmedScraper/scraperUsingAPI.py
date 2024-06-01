@@ -86,7 +86,7 @@ if __name__ == '__main__':
     papers = fetch_details(query, max_results)
     
     # Processing the fetched papers and save them to a CSV file
-    with open('pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('pubmedScanner/pubmed_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['Title', 'Authors', 'PublicationType', 'URL', 'KeyFindings', 'Abstract']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
