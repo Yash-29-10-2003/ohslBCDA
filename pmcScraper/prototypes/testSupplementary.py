@@ -37,7 +37,7 @@ def parse_supplementary_materials(article_details):
         articles.append({"Title": title, "SupplementaryDatasets": datasets})
     return articles
 
-def save_to_csv(articles, filename="pmcScraper/supplementary_materials.csv"):
+def save_to_csv(articles, filename="pmcScraper/prototypes/supplementary_materials.csv"):
     with open(filename, "w", newline='', encoding='utf-8') as csvfile:
         fieldnames = ["Title", "SupplementaryDatasets"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

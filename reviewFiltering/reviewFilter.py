@@ -13,10 +13,18 @@ except FileNotFoundError:
 print("Initial DataFrame:")
 print(df.head())
 
-filtered_df = df[df['PublicationType'].str.contains('Review', na=False)]
+filtered_df = df[~df['PublicationType'].str.contains('Review', na=False)]
 
 print("Filtered DataFrame:")
 print(filtered_df.head())
 
-filtered_df.to_csv('reviewFiltering/filtered_file_review.csv', index=False)
+filtered_df.to_csv('reviewFiltering/filtered_file.csv', index=False)
 print("Filtered file saved successfully")
+
+review_df = df[df['PublicationType'].str.contains('Review', na=False)]
+
+print("Review DataFrame:")
+print(review_df.head())
+
+review_df.to_csv('reviewFiltering/review_file.csv', index=False)
+print("Review file saved successfully")
