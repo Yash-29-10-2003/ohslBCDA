@@ -92,6 +92,7 @@ summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', de
    ```bash
      (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
    ```
+   
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/80797f8f-bbad-4a46-a3e1-e144189c07ba)
 
 
@@ -141,11 +142,13 @@ Or , if you dont want to use it in your local repository , you can access it on 
    ```bash
      (((Breast) OR (Breast cancer)) AND (primary prevention)) AND (oxidative stress) 
    ```
+   
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/f9773a2f-9ae9-42ae-9e20-01968e6ba34f)
 
 
 # Filter :
 We filter all the rows out of a CSV containing "Review" as a string in the "PublicationType" column of the CSV using the pandas library then save the 2 csv's seperately.
+
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/4e9b1436-0849-44b3-b971-c4c808fe4bcb)
 
 The filter can be used remotely [here.](https://colab.research.google.com/drive/1OTO0ddv6b0014DVwPhwnC_tm2ZvnrYJe?usp=sharing)
