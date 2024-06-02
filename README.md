@@ -3,7 +3,7 @@
 - This repository contains all the models and assets for the OHSL BCDA project.
 - The [excel sheet](https://docs.google.com/spreadsheets/d/17-HF9mAb9qOwKXV14OQNLleoap49gqWg9ieNHaJLHSk/edit#gid=1012353830) with scraped results from pubmed .
 
-# Pubmed Scanner:
+# Pubmed Scraper:
 
 - Original Base Article the model is based on: [Scraping Big Data from Public Research Repositories (e.g., PubMed, arXiv)](https://medium.com/@kliang933/scraping-big-data-from-public-research-repositories-e-g-pubmed-arxiv-2-488666f6f29b)
 - This code is an extension of it, with the following additional features:
@@ -98,7 +98,7 @@ summarizer = pipeline('summarization', model='sshleifer/distilbart-cnn-12-6', de
 We filter all the rows out of a CSV containing "Review" as a string in the "PublicationType" column of the CSV using the pandas library then save the 2 csv's seperately.
 ![image](https://github.com/Yash-29-10-2003/ohslBCDA/assets/89728102/4e9b1436-0849-44b3-b971-c4c808fe4bcb)
 
-#Pubmed Central Scraper 
+# Pubmed Central Scraper 
 
 I have made this pmc scraper to get associated data from articles using a search term , the script searches pmc for articles based on a search terms and retrieves a csv of title , publication type , abstract and supplementary material. It also generates an additional filtered csv containing only the rows which have associated data in them (for better accessibility).
 
